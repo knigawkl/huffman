@@ -2,20 +2,12 @@ from itertools import groupby
 from typing import Tuple
 from node import Node
 from heapq import heapify, heappop, heappush
+from util import write_file, read_file
 
 
 class Huffman:
-    def write_file(self, output_path, decoded):
-        with open(output_path, 'w+') as file:
-            file.write(decoded)
-
-    def read_file(self, filepath: str) -> str:
-        with open(filepath, 'r') as file:
-            text = file.read()
-        return text
-
     def encode(self, filepath: str) -> Tuple[str, Node]:
-        plaintext = self.read_file(filepath)
+        plaintext = read_file(filepath)
         root = self.build_tree(plaintext)
         codes = self.binarize(root)
         encoded = "".join([codes[sign] for sign in plaintext])
@@ -59,4 +51,4 @@ class Huffman:
             if current.left is None and current.right is None:
                 decoded += current.item
                 current = root
-        self.write_file(output_path, decoded)
+        write_file(output_path, decoded)

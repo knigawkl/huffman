@@ -27,3 +27,6 @@ class Node:
 
     def __ge__(self, other):
         return self.weight >= other.weight
+
+
+
