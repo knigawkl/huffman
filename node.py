@@ -10,5 +10,20 @@ class Node:
         self.left = l
         self.right = r
 
-    def __cmp__(self, other):
-        return (self.weight > other.weight) - (self.weight < other.weight)
+    def __eq__(self, other):
+        return self.weight == other.weight
+
+    def __ne__(self, other):
+        return self.weight != other.weight
+
+    def __lt__(self, other):
+        return self.weight < other.weight
+
+    def __le__(self, other):
+        return self.weight <= other.weight
+
+    def __gt__(self, other):
+        return self.weight > other.weight
+
+    def __ge__(self, other):
+        return self.weight >= other.weight
