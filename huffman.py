@@ -7,7 +7,7 @@ from heapq import heapify, heappop, heappush
 class Huffman:
     def write_file(self, output_path, decoded):
         with open(output_path, 'w+') as file:
-            text = file.write(decoded)
+            file.write(decoded)
 
     def read_file(self, filepath: str) -> str:
         with open(filepath, 'r') as file:
@@ -48,7 +48,7 @@ class Huffman:
             self.create_code(prev + "0", node.left, codes)
             self.create_code(prev + "1", node.right, codes)
 
-    def decode(self, encoded: str, root: Node, output_path: str) -> str:
+    def decode(self, encoded: str, root: Node, output_path: str):
         current = root
         decoded = ''
         for code in encoded:
@@ -60,12 +60,3 @@ class Huffman:
                 decoded += current.item
                 current = root
         self.write_file(output_path, decoded)
-
-
-if __name__ == '__main__':
-    input_path = 'input.txt'
-    output_path = 'output.txt'
-
-    huff = Huffman()
-    encoded, root = huff.encode(input_path)
-    huff.decode(encoded, root, output_path)
